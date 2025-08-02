@@ -193,7 +193,7 @@
       <!-- Camera Localisation -->
       <div class="column is-half">
         <h3 class="title is-4">Camera Localisation</h3>
-        <p>
+        <p class="has-text-justified" style="hyphens: auto;">
         We initialise the system by estimating camera pose through RGB-D odometry using a coarse-to-fine strategy. To ensure robustness, we run a separate dense tracking module alongside the main semantic map. This module maintains a signed distance field using a voxel hash map and enables stable pose estimation through frame-to-model alignment. By decoupling tracking from embedding integration, we preserve both high localisation accuracy and real-time efficiency. This separation is critical to avoid cumulative degradation in both geometry and semantic quality.
         </p>
         <figure class="image is-4by3 mt-3">
@@ -204,7 +204,7 @@
       <!-- Segment-Aligned Vision-Language Embeddings -->
       <div class="column is-half">
         <h3 class="title is-4">Segment-Aligned Vision-Language Embeddings</h3>
-        <p>
+        <p class="has-text-justified" style="hyphens: auto;">
         To encode rich semantic cues, we extract pixel-aligned vision-language embeddings for each frame. We use the Segment Anything model (SAM) to generate object-aware masks, which are then passed through a CLIP encoder to obtain segment-level features. Unlike prior approaches that rely on bounding box crops, our method directly associates segment embeddings with pixel coordinates. This alignment ensures precise spatial grounding of semantic features while avoiding dilution from irrelevant context.
         </p>
         <figure class="image is-4by3 mt-3">
@@ -223,7 +223,7 @@
       <!-- Refinement and Masking -->
       <div class="column is-half">
         <h3 class="title is-4">Refinement and Masking Strategy</h3>
-        <p>
+        <p class="has-text-justified" style="hyphens: auto; overflow-wrap: break-word; word-break: break-word;">
         We improve segment coverage by sampling unsegmented regions and querying them again through SAM, filling in missed areas without relying on heavier models. To avoid embedding overlap across nearby objects, we apply a masking strategy where only foreground pixels are retained, while background regions are replaced with a fixed value. This helps ensure the resulting embeddings are more distinctive, leading to sharper and more separable responses during language queries. We also discard global image embeddings, as they tend to blur local semantic distinctions.
         </p>
         <figure class="image is-4by3 mt-3">
@@ -234,7 +234,7 @@
       <!-- 3D Embedding Integration -->
       <div class="column is-half">
         <h3 class="title is-4">3D Embedding Integration</h3>
-        <p>
+        <p class="has-text-justified" style="hyphens: auto; overflow-wrap: break-word; word-break: break-word;">
         Segment-level embeddings are lifted into 3D using the estimated pose and depth image. To ensure efficient storage and robustness, embeddings are integrated into the global map using a confidence-weighted fusion that prioritises well-observed points. The 3D map is maintained under strict memory constraints by adaptive downsampling while preserving semantic coverage. Embeddings are incrementally updated as new data arrives, allowing the system to represent spatial and semantic structure densely and in real time.
         </p>
         <figure class="image is-4by3 mt-3">
@@ -254,7 +254,7 @@
         <figure class="image is-4by3 mt-3">
           <img src="static/images/placeholder_querying.png" alt="Text-Based 3D Querying">
         </figure>
-        <p>
+        <p class="has-text-justified" style="hyphens: auto; overflow-wrap: break-word; word-break: break-word;">
         At inference time, users can query the map using arbitrary text. A CLIP text embedding is compared with the 3D semantic map to produce a similarity heatmap. We run multiple queries simultaneously, including generic prompts like "object", in order to suppress noisy matches and boost relevant responses. The output is refined through clustering in both feature and geometric space, yielding compact and accurate 3D segments corresponding to the target query. This allows intuitive, language-driven interaction with real-world environments.
         </p>
       </div>
